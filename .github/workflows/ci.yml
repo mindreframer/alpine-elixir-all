@@ -5,8 +5,9 @@ on:
     branches: main
 
 jobs:
-  path-context:
+  elixir-build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     steps:
       -
         name: Checkout

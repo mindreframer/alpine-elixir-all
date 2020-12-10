@@ -3,7 +3,7 @@ export DOCKERHUB_USER="mindreframer"
 
 export ALPINE_VERSION="3.12.1"
 
-export ERLANG_VERSION="23.1.2"
+export ERLANG_VERSION="23.1.5"
 export ERLANG_IMAGE="alpine-erlang"
 
 export ELIXIR_VERSION="1.11.1"

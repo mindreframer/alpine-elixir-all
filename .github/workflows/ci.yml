@@ -76,13 +76,17 @@ jobs:
       -
         name: Build and push Elixir
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-elixir') == true
-        uses: docker/build-push-action@v2
-        with:
-          context: elixir
-          file: elixir/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
-          push: true
-          tags: ${{ steps.set_versions.outputs.versionsJson.elixir }}
+        run: |
+          cd elixir
+          make build
+          make release
+        # uses: docker/build-push-action@v2
+        # with:
+        #   context: elixir
+        #   file: elixir/Dockerfile
+        #   platforms: linux/amd64,linux/arm64,linux/386
+        #   push: true
+        #   tags: ${{ steps.set_versions.outputs.versionsJson.elixir }}
       # -
       #   name: Build and push Phoenix
       #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true

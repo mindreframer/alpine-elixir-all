@@ -12,6 +12,8 @@ Following ENV variables are available:
 export REFRESHED_AT="2020-12-10"
 export DOCKERHUB_USER="mindreframer"
 
+export ALPINE_VERSION="3.12.1"
+
 export ELIXIR_VERSION="1.11.1"
 export ELIXIR_IMAGE="alpine-elixir"
 

@@ -1,4 +1,4 @@
-FROM alpine:3.12.1 AS build
+FROM alpine:{{ALPINE_VERSION}} AS build
 
 # Important!  Update this no-op ENV variable when this Dockerfile
 # is updated with the current date. It will force refresh of all
@@ -109,7 +109,7 @@ RUN \
 
 ### Final Image
 
-FROM alpine:3.12.1
+FROM alpine:{{ALPINE_VERSION}}
 
 MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 

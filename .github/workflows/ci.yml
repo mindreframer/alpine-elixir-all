@@ -46,10 +46,7 @@ jobs:
           file: elixir/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          tags: |
-            mindreframer/alpine-elixir:latest
-            mindreframer/alpine-elixir:1.11.1
-            mindreframer/alpine-elixir:1.11
+          tags: ${{ fromJson(./bin/render-versions).elixir}}
       -
         name: Build and push Phoenix
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true

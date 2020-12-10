@@ -9,8 +9,6 @@ export ELIXIR_IMAGE="alpine-elixir"
 export ERLANG_VERSION=`cat erlang/VERSION`
 export ERLANG_IMAGE="alpine-erlang"
 
-
 bin/render templates/dockerfile-erlang  > erlang/Dockerfile
 bin/render templates/dockerfile-elixir  > elixir/Dockerfile
 bin/render templates/dockerfile-phoenix > phoenix/Dockerfile
-bin/render templates/ci.yml             > .github/workflows/ci.yml

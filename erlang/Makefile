@@ -24,10 +24,10 @@ sh-build: ## Boot to a shell prompt in the build image
 	docker run --rm -it $(IMAGE_NAME)-build:$(VERSION) /bin/bash
 
 build: ## Build the Docker image
-	docker build --squash --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):$(MIN_VERSION) -t $(IMAGE_NAME):$(MAJ_VERSION) -t $(IMAGE_NAME):latest .
+	docker build --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):$(MIN_VERSION) -t $(IMAGE_NAME):$(MAJ_VERSION) -t $(IMAGE_NAME):latest .
 
 build-arm: ## Build the ARMv8 Docker image
-	docker build --squash --force-rm -t $(ARM_IMAGE_NAME):$(VERSION) -t $(ARM_IMAGE_NAME):$(MIN_VERSION) -t $(ARM_IMAGE_NAME):$(MAJ_VERSION) -t $(ARM_IMAGE_NAME):latest -f Dockerfile.arm .
+	docker build --force-rm -t $(ARM_IMAGE_NAME):$(VERSION) -t $(ARM_IMAGE_NAME):$(MIN_VERSION) -t $(ARM_IMAGE_NAME):$(MAJ_VERSION) -t $(ARM_IMAGE_NAME):latest -f Dockerfile.arm .
 
 stage-build: ## Build the build image and stop there for debugging
 	docker build --target=build -t $(IMAGE_NAME)-build:$(VERSION) .

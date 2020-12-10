@@ -22,7 +22,7 @@ export ELIXIR_IMAGE="alpine-elixir"
 ```
 
 ### Opt-in for container building
-To prevent waiting for all containers in all commits, following magic strings are used in commit messages:
+To prevent waiting for all containers on all commits, following magic strings are used in commit messages:
 - `[skip ci]`
 - `[with-erlang]` - include the Erlang container
 - `[with-elixir]` - include the Elixir container

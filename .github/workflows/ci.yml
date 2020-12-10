@@ -36,37 +36,60 @@ jobs:
           echo $content
           # end of optional handling for multi line json
           echo "::set-output name=versionsJson::$content"
+
+      - name: Inspect contexts
+        run: |
+          echo "The github context is:"
+          echo "${{ toJson(github) }}"
+          echo ""
+          echo "The job context is:"
+          echo "${{ toJson(job) }}"
+          echo ""
+          echo "The steps context is:"
+          echo "${{ toJson(steps) }}"
+          echo ""
+          echo "The runner context is:"
+          echo "${{ toJson(runner) }}"
+          echo ""
+          echo "The strategy context is:"
+          echo "${{ toJson(strategy) }}"
+          echo ""
+          echo "The matrix context is:"
+          echo "${{ toJson(matrix) }}"
       -
         name: echo json
         run: |
-          echo "${{ fromJson(steps.set_versions) }}"
-      -
-        name: Build and push Erlang
-        if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true
-        uses: docker/build-push-action@v2
-        with:
-          context: erlang
-          file: erlang/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
-          push: true
-          tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).erlang }}
-      -
-        name: Build and push Elixir
-        if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-elixir') == true
-        uses: docker/build-push-action@v2
-        with:
-          context: elixir
-          file: elixir/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
-          push: true
-          tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).elixir }}
-      -
-        name: Build and push Phoenix
-        if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true
-        uses: docker/build-push-action@v2
-        with:
-          context: phoenix
-          file: phoenix/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
-          push: true
-          tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).phoenix }}
+          echo "${{ toJson(steps.set_versions) }}"
+
+
+
+      # -
+      #   name: Build and push Erlang
+      #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: erlang
+      #     file: erlang/Dockerfile
+      #     platforms: linux/amd64,linux/arm64,linux/386
+      #     push: true
+      #     tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).erlang }}
+      # -
+      #   name: Build and push Elixir
+      #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-elixir') == true
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: elixir
+      #     file: elixir/Dockerfile
+      #     platforms: linux/amd64,linux/arm64,linux/386
+      #     push: true
+      #     tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).elixir }}
+      # -
+      #   name: Build and push Phoenix
+      #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: phoenix
+      #     file: phoenix/Dockerfile
+      #     platforms: linux/amd64,linux/arm64,linux/386
+      #     push: true
+      #     tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).phoenix }}

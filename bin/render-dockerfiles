@@ -12,3 +12,5 @@ export ERLANG_IMAGE="alpine-erlang"
 bin/render templates/dockerfile-erlang  > erlang/Dockerfile
 bin/render templates/dockerfile-elixir  > elixir/Dockerfile
 bin/render templates/dockerfile-phoenix > phoenix/Dockerfile
+
+echo "DOCKERFILES UPDATED!"

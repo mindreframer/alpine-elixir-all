@@ -24,55 +24,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       -
-        # https://stackoverflow.com/questions/61919141/read-json-file-in-github-actions
-        id: set_versions
+        name: Adjust Dockerfiles
         run: |
-          content=`./bin/render-versions`
-          # the following lines are only required for multi line json
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo $content
-          # end of optional handling for multi line json
-          echo "::set-output name=versionsJson::$content"
-
-      - name: Inspect contexts
-        run: |
-          echo "The github context is:"
-          echo "${{ toJson(github) }}"
-          echo ""
-          echo "The job context is:"
-          echo "${{ toJson(job) }}"
-          echo ""
-          echo "The steps context is:"
-          echo "${{ toJson(steps) }}"
-          echo ""
-          echo "The runner context is:"
-          echo "${{ toJson(runner) }}"
-          echo ""
-          echo "The strategy context is:"
-          echo "${{ toJson(strategy) }}"
-          echo ""
-          echo "The matrix context is:"
-          echo "${{ toJson(matrix) }}"
+          bin/render-dockerfiles
       -
-        name: echo json
+        name: Build and push Erlang
+        if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true
         run: |
-          echo "${{ toJson(steps.set_versions) }}"
+          cd erlang
+          make build
+          make release
 
-
-
-      # -
-      #   name: Build and push Erlang
-      #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: erlang
-      #     file: erlang/Dockerfile
-      #     platforms: linux/amd64,linux/arm64,linux/386
-      #     push: true
-      #     tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).erlang }}
       -
         name: Build and push Elixir
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-elixir') == true
@@ -80,20 +44,11 @@ jobs:
           cd elixir
           make build
           make release
-        # uses: docker/build-push-action@v2
-        # with:
-        #   context: elixir
-        #   file: elixir/Dockerfile
-        #   platforms: linux/amd64,linux/arm64,linux/386
-        #   push: true
-        #   tags: ${{ steps.set_versions.outputs.versionsJson.elixir }}
-      # -
-      #   name: Build and push Phoenix
-      #   if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: phoenix
-      #     file: phoenix/Dockerfile
-      #     platforms: linux/amd64,linux/arm64,linux/386
-      #     push: true
-      #     tags: ${{ fromJson(steps.set_versions.outputs.versionsJson).phoenix }}
+
+      -
+        name: Build and push Phoenix
+        if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true
+        run: |
+          cd phoenix
+          make build
+          make release

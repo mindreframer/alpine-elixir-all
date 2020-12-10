@@ -1,9 +1,10 @@
 .PHONY: help
 
 VERSION ?= `cat VERSION`
+DOCKERHUB_USER ?= "mindreframer"
 MAJ_VERSION := $(shell echo $(VERSION) | sed 's/\([0-9][0-9]*\)\.\([0-9][0-9]*\)\(\.[0-9][0-9]*\)*/\1/')
 MIN_VERSION := $(shell echo $(VERSION) | sed 's/\([0-9][0-9]*\)\.\([0-9][0-9]*\)\(\.[0-9][0-9]*\)*/\1.\2/')
-IMAGE_NAME ?= mindreframer/alpine-elixir
+IMAGE_NAME ?= $(DOCKERHUB_USER)/alpine-elixir
 
 help:
 	@echo "$(IMAGE_NAME):$(VERSION)"

@@ -1,4 +1,4 @@
-FROM mindreframer/alpine-erlang:{{ERLANG_VERSION}}
+FROM {{DOCKERHUB_USER}}/alpine-erlang:{{ERLANG_VERSION}}
 
 MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 

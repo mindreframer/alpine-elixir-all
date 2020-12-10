@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-export REFRESHED_AT="2020-12-10"
-export DOCKERHUB_USER="mindreframer"
-
-export ELIXIR_VERSION=`cat elixir/VERSION`
-export ELIXIR_IMAGE="alpine-elixir"
-
-export ERLANG_VERSION=`cat erlang/VERSION`
-export ERLANG_IMAGE="alpine-erlang"
+source ./bin/env-vars
 
 bin/render templates/dockerfile-erlang  > erlang/Dockerfile
 bin/render templates/dockerfile-elixir  > elixir/Dockerfile
 bin/render templates/dockerfile-phoenix > phoenix/Dockerfile
+
+echo $ELIXIR_VERSION > elixir/VERSION
+echo $ELIXIR_VERSION > phoenix/VERSION
+echo $ERLANG_VERSION > erlang/VERSION
 
 echo "DOCKERFILES UPDATED!"

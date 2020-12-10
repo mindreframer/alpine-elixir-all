@@ -1,4 +1,4 @@
-FROM mindreframer/alpine-elixir:{{ELIXIR_VERSION}}
+FROM {{DOCKERHUB_USER}}/alpine-elixir:{{ELIXIR_VERSION}}
 
 MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 

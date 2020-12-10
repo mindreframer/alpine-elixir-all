@@ -33,6 +33,7 @@ jobs:
         name: Build and push Erlang
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true
         run: |
+          source bin/env-vars
           cd erlang
           make build
           make release
@@ -41,6 +42,7 @@ jobs:
         name: Build and push Elixir
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-elixir') == true
         run: |
+          source bin/env-vars
           cd elixir
           make build
           make release
@@ -49,6 +51,7 @@ jobs:
         name: Build and push Phoenix
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-phoenix') == true
         run: |
+          source bin/env-vars
           cd phoenix
           make build
           make release

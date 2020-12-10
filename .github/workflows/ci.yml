@@ -36,7 +36,7 @@ jobs:
           # end of optional handling for multi line json
           echo "::set-output name=versionsJson::$content"
       - run: |
-        echo "${{fromJson(steps.set_var.outputs.versionsJson).elixir}}"
+        echo "${{fromJson(steps.set_versions.outputs.versionsJson).elixir}}"
       -
         name: Build and push Erlang
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true

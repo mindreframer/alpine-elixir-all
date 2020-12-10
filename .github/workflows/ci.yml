@@ -39,9 +39,7 @@ jobs:
       -
         name: echo json
         run: |
-          echo "${{ fromJson(steps.set_versions.outputs.versionsJson.erlang) }}"
-          echo "${{ fromJson(steps.set_versions.outputs.versionsJson.elixir) }}"
-          echo "${{ fromJson(steps.set_versions.outputs.versionsJson.phoenix) }}"
+          echo "${{ fromJson(steps.set_versions) }}"
       -
         name: Build and push Erlang
         if: github.event_name == 'push' && contains(toJson(github.event.commits), 'with-erlang') == true

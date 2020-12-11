@@ -13,12 +13,8 @@ export REFRESHED_AT="2020-12-10"
 export DOCKERHUB_USER="mindreframer"
 
 export ALPINE_VERSION="3.12.1"
-
-export ERLANG_VERSION="23.1.2"
-export ERLANG_IMAGE="alpine-erlang"
-
+export ERLANG_VERSION="23.1.5"
 export ELIXIR_VERSION="1.11.1"
-export ELIXIR_IMAGE="alpine-elixir"
 ```
 
 ### Opt-in for container building

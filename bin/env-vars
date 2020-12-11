@@ -1,6 +1,6 @@
-export REFRESHED_AT="2020-12-10"
+export REFRESHED_AT="2020-12-11"
 export DOCKERHUB_USER="mindreframer"
 
-export ALPINE_VERSION="3.12.1"
+export ALPINE_VERSION="3.12.2"
 export ERLANG_VERSION="23.1.5"
 export ELIXIR_VERSION="1.11.2"

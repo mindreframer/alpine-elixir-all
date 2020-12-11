@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+### Example: bin/build-container-for elixir
+
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ "$#" -eq 1 ] || die "argument required, $# provided ( allowed value: erlang / elixir / phoenix )"
+
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
+# build docker containers with loaded env variables
+source bin/env-vars
+cd $1
+make build
+make release

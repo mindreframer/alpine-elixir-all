@@ -1,4 +1,4 @@
-FROM mindreframer/alpine-elixir:1.11.1
+FROM mindreframer/alpine-elixir:1.11.2
 
 MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 

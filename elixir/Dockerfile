@@ -1,4 +1,4 @@
-FROM mindreframer/alpine-erlang:23.1.2
+FROM mindreframer/alpine-erlang:23.1.5
 
 MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 
@@ -7,7 +7,7 @@ MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 # of the base images and things like `apt-get update` won't be using
 # old cached versions when the Dockerfile is built.
 ENV REFRESHED_AT=2020-12-10 \
-    ELIXIR_VERSION=v1.11.1 \
+    ELIXIR_VERSION=v1.11.2 \
     MIX_HOME=/opt/mix \
     HEX_HOME=/opt/hex
 

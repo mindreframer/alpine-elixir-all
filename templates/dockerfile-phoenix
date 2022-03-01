@@ -15,6 +15,7 @@ RUN \
     apk update && \
     apk --no-cache --update add \
       make \
+      libstdc++ \
       g++ \
       wget \
       curl \
